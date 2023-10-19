@@ -4,8 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const textInput = document.getElementById("text");
   const amountInput = document.getElementById("amount");
   const addTransactionBtn = document.getElementById("add-transaction");
+  const resetButton = document.getElementById("reset-button");
+  const printButton = document.getElementById("print-button");
+  const currentDate = document.getElementById("current-date");
 
   let balance = 0;
+
+  // Reset button event listener
+  resetButton.addEventListener("click", () => {
+      resetBalance();
+  });
+
+  // Print button event listener
+  printButton.addEventListener("click", () => {
+      window.print();
+  });
 
   addTransactionBtn.addEventListener("click", () => {
       const text = textInput.value;
@@ -33,4 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
       textInput.value = "";
       amountInput.value = "";
   }
+
+  function resetBalance() {
+      balance = 0;
+      balanceElement.textContent = "0.00";
+      transactionList.innerHTML = "";
+  }
+
+  // Display the current date
+  const today = new Date();
+  currentDate.textContent = `Today's Date: ${today.toLocaleDateString()}`;
 });
